@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>二进制、源码、反码、补码，以及位运算 | Rekkles&#39;s Home</title>
+<meta name="description" content="Code Machine">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://justcodingnobb.github.io//favicon.ico?v=1577932524147">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://justcodingnobb.github.io//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-121073197-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-121073197-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://justcodingnobb.github.io/">
+        <img src="https://justcodingnobb.github.io//images/avatar.png?v=1577932524147" class="site-logo">
+        <h1 class="site-title">Rekkles&#39;s Home</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      Code Machine
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://justcodingnobb.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">二进制、源码、反码、补码，以及位运算</h2>
+            <div class="post-date">2020-01-02</div>
+            
+            <div class="post-content">
+              <h3 id="二进制转为十进制">二进制转为十进制</h3>
+<p>二进制1101.11</p>
+<pre><code>1=1
+10=2
+100=4
+1000=8
+10000=16
+0.1=2^-1=0.5  （负次方为正次方的倒数）
+0.01=2^-2=0.25
+1101.11=8+4+0+1+0.5+0.25=13.75
+</code></pre>
+<h3 id="源码-反码-补码">源码、反码、补码</h3>
+<blockquote>
+<p>一个有符号定点数的最高位为符号位，0是正，1是负</p>
+</blockquote>
+<p>例如,0000001 就是+1,1000001 就是-1<br>
+<strong>正数的反码和补码都是和原码相同</strong><br>
+<strong>负数的反码是将其原码除符号位之外的各位求反</strong></p>
+<h4 id="源码">源码</h4>
+<p>原码就是符号位加上真值的绝对值, 即用第一位表示符号, 其余位表示值. 比如如果是8位二进制:</p>
+<p>[+1]原 = 0000 0001</p>
+<p>[-1]原 = 1000 0001</p>
+<p>第一位是符号位. 因为第一位是符号位, 所以8位二进制数的取值范围就是:</p>
+<p>[1111 1111 , 0111 1111]，即：</p>
+<p>[-127 , 127]</p>
+<p>原码是人脑最容易理解和计算的表示方式.</p>
+<h4 id="反码">反码</h4>
+<p>反码的表示方法是：正数的反码是其本身；负数的反码是在其原码的基础上, 符号位不变，其余各个位取反。</p>
+<p>[+1] = [00000001]原 = [00000001]反</p>
+<p>[-1] = [10000001]原 = [11111110]反</p>
+<p>可见如果一个反码表示的是负数, 人脑无法直观的看出来它的数值. 通常要将其转换成原码再计算。</p>
+<h4 id="补码即在反码的基础上1">补码(即在反码的基础上+1)</h4>
+<p>补码的表示方法是：正数的补码就是其本身；负数的补码是在其原码的基础上, 符号位不变, 其余各位取反, 最后+1. (即在反码的基础上+1)</p>
+<p>[+1] = [00000001]原 = [00000001]反 = [00000001]补</p>
+<p>[-1] = [10000001]原 = [11111110]反 = [11111111]补</p>
+<p>对于负数, 补码表示方式也是人脑无法直观看出其数值的. 通常也需要转换成原码在计算其数值.</p>
+<h4 id="为什么有源码-补码-反码">为什么有源码、补码、反码</h4>
+<p>计算十进制的表达式: 1-1=0</p>
+<pre><code>1 - 1 = 1 + (-1) = 
+[00000001]原 + [10000001]原 = 
+[10000010]原 = -2
+</code></pre>
+<p>为了解决原码做减法的问题, 出现了反码。</p>
+<p>1-1=0</p>
+<pre><code>1 - 1 = 1 + (-1) 
+= [0000 0001]原 + [1000 0001]原 
+= [0000 0001]反 + [1111 1110]反 
+= [1111 1111]反 = [1000 0000]原 
+= -0
+</code></pre>
+<p>-0 没有意义，补码的出现就是解决编码问题</p>
+<pre><code>1-1 = 1 + (-1) 
+= [0000 0001]原 + [1000 0001]原 
+= [0000 0001]补 + [1111 1111]补 
+= [0000 0000]补
+=[0000 0000]原
+</code></pre>
+<h3 id="位运算">位运算</h3>
+<p>按位与：两个都是 1 就是 1<br>
+9 &amp; 5</p>
+<pre><code>1001 = 9
+0101 = 5
+0001 = 1
+</code></pre>
+<p>按位或: 有一个（允许2个）为 1 就是 1<br>
+9 | 5</p>
+<pre><code>1001 = 9
+0101 = 5
+1101 = 13 
+</code></pre>
+<p>按位抑或：不一样的就是 1<br>
+9 ^ 5</p>
+<pre><code>1001 = 9
+0101 = 5
+1100 = 12
+</code></pre>
+<p>按位同或：一样的就是 1(无论为1还是0)<br>
+9 ^ 5</p>
+<pre><code>1001 = 9
+0101 = 5
+0011 = 3
+</code></pre>
+<h3 id="左移运算">左移运算</h3>
+<p>左移运算符m&lt;&lt;n表示吧m左移n位。左移n位的时候，最左边的n位将被丢弃，同时在最右边补上n个0.比如：</p>
+<blockquote>
+<p>00001010 &lt;&lt; 2 = 00101000</p>
+</blockquote>
+<blockquote>
+<p>10001010 &lt;&lt; 3 = 01010000</p>
+</blockquote>
+<h3 id="右移运算">右移运算</h3>
+<p>右移运算符m&gt;&gt;n表示把m右移n位。右移n位的时候，最右边的n位将被丢弃。但右移时处理最左边位的情形要稍微复杂一点。这里要特别注意，如果数字是一个无符号数值，则用0填补最左边的n位。如果数字是一个有符号数值，则用数字的符号位填补最左边的n位。也就是说如果数字原先是一个正数，则右移之后再最左边补n个0；如果数字原先是负数，则右移之后在最左边补n个1.下面是堆两个8位有符号数作右移的例子：</p>
+<blockquote>
+<p>00001010 &gt;&gt; 2 = 00000010</p>
+</blockquote>
+<blockquote>
+<p>10001010 &gt;&gt; 3 = 11110001</p>
+</blockquote>
+<p>关于移位的运算有这样的等价关系：把整数右移一位和把整数除以2在数学上是等价的。</p>
+<pre><code>a &lt;&lt; = 1 ; //a左移一位等效于a = a * 2;
+a &lt;&lt; = 2 ; //a左移2位等效于a = a * 2的2次方（4）；
+</code></pre>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://justcodingnobb.github.io/post/hello-gridea">
+                  <h3 class="post-title">
+                    CentOS 安装 supervisor 以及设置 Laravel 队列设置 
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
