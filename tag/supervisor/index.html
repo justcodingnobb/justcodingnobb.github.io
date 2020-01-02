@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>JS循环中使用定时器的坑 | Rekkles&#39;s Home</title>
+<title>supervisor | Rekkles&#39;s Home</title>
 <meta name="description" content="Code Machine">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -100,74 +100,28 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">JS循环中使用定时器的坑</h2>
-            <div class="post-date">2020-01-02</div>
-            
-            <div class="post-content">
-              <h3 id="js循环中使用定时器的坑">JS循环中使用定时器的坑</h3>
-<p>执行以下代码：</p>
-<pre><code>for(let i=1; i&lt;=5;i++){
-    console.log('ffff:'+i);
-    setTimeout(()=&gt;{ console.log('ssss:'+i) },100);
-}
-</code></pre>
-<p>结果：</p>
-<pre><code>ffff:1
-ffff:2
-ffff:3
-ffff:4
-ffff:5
-ssss:1
-ssss:2
-ssss:3
-ssss:4
-ssss:5
-</code></pre>
-<p>执行以下代码：</p>
-<pre><code>for(var i=1; i&lt;=5;i++){
-    console.log('ffff:'+i);
-    setTimeout(()=&gt;{ console.log('ssss:'+i) },100);
-}
-</code></pre>
-<p>结果：</p>
-<pre><code>ffff:1
-ffff:2
-ffff:3
-ffff:4
-ffff:5
-ssss:6
-ssss:6
-ssss:6
-ssss:6
-ssss:6
-</code></pre>
-<p>唯一的区别： for里面定义变量，一个用的let，一个用的var。<br>
-let：函数作用域，在当前函数内可以使用。<br>
-var：全局作用域，定义之后全局可用。</p>
-<p>还涉及一个知识点：context！ 俗称上下文（虽然这么翻译很狗屎）</p>
-<p><code>通俗点讲上下文，其实就是你当前执行环境的一个快照（也有是引用的情况）！</code></p>
-<p>第一个例子：<br>
-使用let定义的变量，那么let的作用域仅仅在for里面生效，执行输出之后，执行setTimeout（异步），JS异步相当于添加一个任务队列，当同步任务执行完毕之后就会去执行异步队列的任务（这也解释了为什么有时候使用JS定时器不会按照你规定的时间去完成），添加异步任务的时候，保存了上下文，上下文中的i第一次为1，之后递加，总共循环5次，添加5个异步队列。</p>
-<p>第二个例子：<br>
-使用var定义的变量，全局都有效，指向的是一个内存地址，无论哪里修改了，其他地方使用这个变量都会被修改（引用传递，内存地址只有一个），当第一次添加一个异步队列的时候，上下文指向的是同一个内存地址的i，随着循环的递加，i的地址不变，值每次都+1，那么当循环执行完毕，开始执行异步队列的时候，i的值取到的是 5++；for里面循环结束为最后一个表达式的值，这也就解释了为什么每次都是6.</p>
-
-            </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://justcodingnobb.github.io/post/ru-he-kai-fa-yi-ge-chrome-tuo-zhan">
-                  <h3 class="post-title">
-                    如何开发一个Chrome拓展。
-                  </h3>
+          <h2 class="current-tag">标签: supervisor</h2>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://justcodingnobb.github.io/post/use-supervisor">
+                  <h2 class="post-title">CentOS 安装 supervisor 以及设置 Laravel 队列设置 </h2>
                 </a>
+                <div class="post-date">
+                  2018-12-12
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
               </div>
-            
+              
+            </article>
+          
 
-            
-
-          </div>
+          <div class="pagination-container">
+  
+  
+</div>
 
         </div>
       </div>

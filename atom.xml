@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://justcodingnobb.github.io/</id>
     <title>Rekkles&apos;s Home</title>
-    <updated>2020-01-02T02:35:41.713Z</updated>
+    <updated>2020-01-02T04:30:04.865Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://justcodingnobb.github.io/"/>
     <link rel="self" href="https://justcodingnobb.github.io/atom.xml"/>
@@ -213,8 +213,8 @@ a &lt;&lt; = 2 ; //a左移2位等效于a = a * 2的2次方（4）；
     </entry>
     <entry>
         <title type="html"><![CDATA[CentOS 安装 supervisor 以及设置 Laravel 队列设置 ]]></title>
-        <id>https://justcodingnobb.github.io/post/hello-gridea</id>
-        <link href="https://justcodingnobb.github.io/post/hello-gridea">
+        <id>https://justcodingnobb.github.io/post/use-supervisor</id>
+        <link href="https://justcodingnobb.github.io/post/use-supervisor">
         </link>
         <updated>2018-12-11T16:00:00.000Z</updated>
         <content type="html"><![CDATA[<h2 id="centos-安装-supervisor-以及设置-laravel-队列设置">CentOS 安装 supervisor 以及设置 Laravel 队列设置</h2>
